@@ -42,5 +42,5 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
 
     Route::resource('/quizzes/{id}/questions', 'QuestionsController');
 
-
+    Route::resource('/quizzes/{id}/questions/{question}/options', 'OptionsController');
 });

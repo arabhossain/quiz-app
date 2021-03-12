@@ -1,6 +1,8 @@
-
+@if($formMode == 'edit')
+    {!! Form::hidden('quiz_id', $item->quiz_id ) !!}
+@else
 {!! Form::hidden('quiz_id', $quiz->id ) !!}
-
+@endif
 <div class="form-group{{ $errors->has('question') ? 'has-error' : ''}}">
     {!! Form::label('question', 'Question', ['class' => 'control-label']) !!}
     {!! Form::text('question', null, ('required' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}

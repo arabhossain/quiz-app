@@ -39,4 +39,9 @@ class Question extends Model
     {
         return $query->where('visible', 1);
     }
+
+    public function getImageUrlAttribute(): string
+    {
+        return !is_null($this->attributes['image']) ? url($this->attributes['image']) : false;
+    }
 }

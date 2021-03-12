@@ -7,9 +7,9 @@
 
             <div class="col-md-9">
                 <div class="card">
-                    <div class="card-header">Create New Question</div>
+                    <div class="card-header">Edit Option #{{ $item->id }}</div>
                     <div class="card-body">
-                        <a href="{{ url('/admin/quizzes/'.$quiz->id.'/questions') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                        <a href="{{ url('/admin/quizzes') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                         <br />
                         <br />
 
@@ -21,9 +21,14 @@
                             </ul>
                         @endif
 
-                        {!! Form::open(['url' => '/admin/quizzes/'.$quiz->id.'/questions', 'class' => 'form-horizontal', 'files' => true]) !!}
+                        {!! Form::model($item, [
+                            'method' => 'PATCH',
+                            'url' => ['/admin/quizzes', $item->id],
+                            'class' => 'form-horizontal',
+                            'files' => true
+                        ]) !!}
 
-                        @include ('admin.questions.form', ['formMode' => 'create'])
+                        @include ('admin.quizzes.form', ['formMode' => 'edit'])
 
                         {!! Form::close() !!}
 
@@ -33,5 +38,3 @@
         </div>
     </div>
 @endsection
-
-@include('admin.image-uploader')

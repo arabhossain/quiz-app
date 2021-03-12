@@ -23,12 +23,12 @@
 
                         {!! Form::model($item, [
                             'method' => 'PATCH',
-                            'url' => ['/admin/quizzes', $item->id],
+                            'url' => ['/admin/quizzes/'.$item->quiz_id.'/questions', $item->id],
                             'class' => 'form-horizontal',
                             'files' => true
                         ]) !!}
 
-                        @include ('admin.quizzes.form', ['formMode' => 'edit'])
+                        @include ('admin.questions.form', ['formMode' => 'edit'])
 
                         {!! Form::close() !!}
 
@@ -38,3 +38,5 @@
         </div>
     </div>
 @endsection
+
+@include('admin.image-uploader')

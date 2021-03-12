@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Course;
 use App\Http\Controllers\Controller;
+use App\Question;
 use App\Quiz;
 use Illuminate\Http\Request;
 
@@ -73,8 +74,11 @@ class QuizzesController extends Controller
 
     public function destroy($id)
     {
-        Quiz::destroy($id);
-
+        try {
+            Quiz::destroy($id);
+        }catch (\Exception $exception){
+            return redirect()->back()->with('flash_message', 'Quiz can not be delete until it has questions!');
+        }
         return redirect('admin/quizzes')->with('flash_message', 'Quiz is deleted!');
     }
 }
