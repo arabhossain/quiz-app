@@ -45,7 +45,7 @@ class QuestionsController extends Controller
                 $fileCoptyToDir = 'images/questions/'.$question->id;
 
                 if (!is_dir($fileCoptyToDir))
-                    mkdir($fileCoptyToDir,0777);
+                    mkdir($fileCoptyToDir,0777, true);
 
                 $fileCopyTo = $fileCoptyToDir.'/'.$tempFile->first()->filename;
                 copy($filePath, public_path($fileCopyTo));
@@ -93,7 +93,7 @@ class QuestionsController extends Controller
                 $fileCoptyToDir = 'images/questions/'.$item->id;
 
                 if (!is_dir($fileCoptyToDir))
-                    mkdir($fileCoptyToDir,0777);
+                    mkdir($fileCoptyToDir,0777, true);
 
                 $fileCopyTo = $fileCoptyToDir.'/'.$tempFile->first()->filename;
                 copy($filePath, public_path($fileCopyTo));

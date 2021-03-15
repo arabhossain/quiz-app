@@ -43,7 +43,7 @@ class OptionsController extends Controller
                 $filePath = storage_path("app/temp/".$tempFile->first()->folder.'/'.$tempFile->first()->filename);
                 $fileCoptyToDir = 'images/questions/'.$question->id.'/options';
                 if (!is_dir($fileCoptyToDir))
-                    mkdir($fileCoptyToDir,0777);
+                    mkdir($fileCoptyToDir,0777, true);
                 $fileCopyTo = $fileCoptyToDir.'/'.$tempFile->first()->filename;
                 copy($filePath, public_path($fileCopyTo));
                 $question->update(['image' => $fileCopyTo]);
@@ -69,6 +69,6 @@ class OptionsController extends Controller
             return redirect()->back()->with('flash_message', 'Something went wrong! Student may have selected this option on a quiz');
         }
 
-        return redirect('admin/quizzes/'.$quizId.'/questions/'.$questionId)->with('flash_message', 'Question is deleted!');
+        return redirect('admin/quizzes/'.$quizId.'/questions/'.$questionId.'/options')->with('flash_message', 'Option is deleted from that questions!');
     }
 }

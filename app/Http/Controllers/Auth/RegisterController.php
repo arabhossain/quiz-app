@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use App\Role;
+use App\TempMedia;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
@@ -64,10 +66,38 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        $role = Role::where('name', config('default_role_on_registration'))->get();
+        if ($role->isNotEmpty())
+            $user->assignRole($role->first());
+
+        if (request()->image){
+            $tempFile = TempMedia::where('folder', request()->image)->get();
+            if ($tempFile->isNotEmpty()){
+                $filePath = storage_path("app/temp/".$tempFile->first()->folder.'/'.$tempFile->first()->filename);
+                $fileCoptyToDir = 'images/user/'.$user->id;
+
+                if (!is_dir($fileCoptyToDir))
+                    mkdir($fileCoptyToDir,0777);
+
+                $fileCopyTo = $fileCoptyToDir.'/'.$tempFile->first()->filename;
+                copy($filePath, public_path($fileCopyTo));
+                $user->update(['image' => $fileCopyTo]);
+
+                if (file_exists($filePath)) {
+                    unlink($filePath);
+                    rmdir(storage_path("app/temp/" . $tempFile->first()->folder));
+                }
+
+                $tempFile->first()->delete();
+            }
+        }
+
+        return $user;
     }
 }

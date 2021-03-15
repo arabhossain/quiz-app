@@ -13,9 +13,8 @@ class QuestionOption extends Model
         return $this->attributes['correct'] == 1 ? 'Yes' : 'No';
     }
 
-
-    public function getImageAttribute($value): string
+    public function getImageUrlAttribute(): string
     {
-        return url($value);
+        return !is_null($this->attributes['image']) ? url($this->attributes['image']) : false;
     }
 }

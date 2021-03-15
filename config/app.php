@@ -2,6 +2,8 @@
 
 return [
 
+    'default_role_on_registration' => 'student',
+
     /*
     |--------------------------------------------------------------------------
     | Application Name

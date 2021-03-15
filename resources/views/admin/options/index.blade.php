@@ -7,7 +7,10 @@
 
             <div class="col-md-9">
                 <div class="card">
-                    <div class="card-header"><a href="{{url('admin/quizzes/'.$quizId.'/questions/'.$items->id)}}">{{$items->question}} </a></div>
+                    <div class="card-header">
+                        <a href="{{url('admin/quizzes/'.$quizId.'/questions')}}">All Questions</a> >
+                        <a href="{{url('admin/quizzes/'.$quizId.'/questions/'.$items->id)}}">{{$items->question}} </a>
+                    </div>
                     <div class="card-body">
                         <a href="{{ url('admin/quizzes/'.$quizId.'/questions/'.$items->id.'/options/create') }}" class="btn btn-success btn-sm" title="Add New Option">
                             <i class="fa fa-plus" aria-hidden="true"></i> Add New
@@ -38,14 +41,13 @@
                                     <tr>
                                         <td>{{ $item->id }}</td>
                                         <td>{{ $item->option }}</td>
-                                        <td><img height="45px" src="{{$item->image}}"/></td>
+                                        <td><img height="45px" src="{{$item->image_url}}"/></td>
                                         <td><code>{{ $item->correct_text }}</code></td>
                                         <td>
-                                            <a href="{{ url('/admin/quizzes/' . $quizId . '/questions/'. $item->question_id.'/options/'.$item->id) }}" title="View Option"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></button></a>
                                             <a href="{{ url('/admin/quizzes/' .$quizId . '/questions/'. $item->question_id. '/options/'.$item->id.'/edit') }}" title="Edit Option"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>
                                             {!! Form::open([
                                                 'method' => 'DELETE',
-                                                'url' => ['/admin/quizzes/' .$quizId . '/questions/'. $item->question_id.'/options', $item->question_id],
+                                                'url' => ['/admin/quizzes/' .$quizId . '/questions/'. $item->question_id.'/options', $item->id],
                                                 'style' => 'display:inline'
                                             ]) !!}
                                                 {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i>', array(

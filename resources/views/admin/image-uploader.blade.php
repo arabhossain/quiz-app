@@ -15,6 +15,7 @@
         const pond = FilePond.create( inputElement );
         FilePond.setOptions({
             server: {
+                labelIdle: 'Drop your picture/browse from device',
                 url: '/upload',
                 headers: {
                     'X-CSRF-TOKEN' : '{{csrf_token()}}'

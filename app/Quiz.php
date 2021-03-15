@@ -51,6 +51,12 @@ class Quiz extends Model
         return $this->attributes['visible'] == 1 ? 'Yes' : 'No';
     }
 
+    public function getSlugAttribute(): string
+    {
+        return preg_replace('/\W+/', '-', strtolower(trim($this->attributes['title'] )));
+    }
+
+
     public function scopeVisible($query)
     {
         return $query->where('visible', 1);
