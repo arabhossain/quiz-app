@@ -27,11 +27,11 @@ class HomeController extends Controller
      */
     public function index()
     {
+
         $courses = Course::withCount(['quizzes'])->with(['quizzes' => function($q) {
             $q->visible()->limit(5);
         }])->orderByDesc('quizzes_count')->limit(6)->get();
 
-        $courses = Course::get();
         $quizzesCount = Quiz::visible()->count();
         $quizAttemptsCount = QuizAttempt::count();
         $studentsCount = User::whereHas(
@@ -42,6 +42,7 @@ class HomeController extends Controller
 
         return view('frontend.pages.home', compact('courses', 'courses', 'quizzesCount', 'quizAttemptsCount', 'studentsCount'));
     }
+
 
     public function about(){
         return view('frontend.pages.about');

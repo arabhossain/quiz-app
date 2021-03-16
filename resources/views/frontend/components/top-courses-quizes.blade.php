@@ -4,7 +4,7 @@
         <div class="row">
             @foreach($courses as $course)
                 <div class="col-xl-4 col-md-6 mb-3">
-                    <div class="card shadow" style="min-width: 320px">
+                    <div class="card shadow">
                     <div class="card-body">
                         <h5 class="card-title">{{$course->name}}</h5>
                         <p class="card-text">{!! $course->description !!}</p>

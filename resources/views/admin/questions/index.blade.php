@@ -57,8 +57,9 @@
                                                         'onclick'=>'return confirm("Confirm delete?")'
                                                 )) !!}
                                             {!! Form::close() !!}
-                                            <a href="{{ url('/admin/quizzes/' . $item->quiz_id . '/questions/'. $item->id.'/options') }}" title="Manage Options"><button class="btn btn-success btn-sm"><i class="fa fa-list" aria-hidden="true"></i></button></a>
-
+                                            @if(!in_array($item->answer_type, [3,4]))
+                                                <a href="{{ url('/admin/quizzes/' . $item->quiz_id . '/questions/'. $item->id.'/options') }}" title="Manage Options"><button class="btn btn-success btn-sm"><i class="fa fa-list" aria-hidden="true"></i></button></a>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach

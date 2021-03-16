@@ -32,7 +32,7 @@
         {!! Form::label('yesno', 'Question Type: ', ['class' => 'control-label']) !!}
         <br/>
         <div class="form-check form-check-inline{{ $errors->has('answer_type') ? ' has-error' : ''}}">
-            {!! Form::radio('answer_type', 1,true ,['class' => 'form-check-input', 'id' => 'type-single', 'required' => 'required']) !!}
+            {!! Form::radio('answer_type', 1, true ,['class' => 'form-check-input', 'id' => 'type-single', 'required' => 'required']) !!}
             {!! Form::label('type-single', 'Single Selection', ['class' => 'form-check-label']) !!}
             {!! $errors->first('answer_type', '<p class="help-block">:message</p>') !!}
         </div>
@@ -43,12 +43,27 @@
             {!! $errors->first('answer_type', '<p class="help-block">:message</p>') !!}
         </div>
 
-        <div class="form-check form-check-inline{{ $errors->has('visible') ? ' has-error' : ''}}">
+        <div class="form-check form-check-inline{{ $errors->has('answer_type') ? ' has-error' : ''}}">
             {!! Form::radio('answer_type', 3, false ,['class' => 'form-check-input', 'id'=>'type-text', 'required' => 'required']) !!}
             {!! Form::label('type-text', 'Text Answer', ['class' => 'form-check-label', 'for' =>'active_no']) !!}
             {!! $errors->first('type', '<p class="help-block">:message</p>') !!}
         </div>
 
+        <div class="form-check form-check-inline{{ $errors->has('answer_type') ? ' has-error' : ''}}">
+            {!! Form::radio('answer_type', 4, false ,['class' => 'form-check-input', 'id'=>'type-gaps', 'required' => 'required']) !!}
+            {!! Form::label('type-gaps', 'Fill In The Gaps ', ['class' => 'form-check-label', 'for' =>'type-gaps']) !!}
+            {!! $errors->first('type', '<p class="help-block">:message</p>') !!}
+        </div>
+
+    </div>
+</div>
+
+<div id="fill-in-the-gaps">
+    <div class="form-group{{ $errors->has('fill_gaps') ? 'has-error' : ''}}">
+        {!! Form::label('fill_gaps', 'Fill In The Gaps', ['class' => 'control-label']) !!}
+        {!! Form::text('fill_gaps', null, ['class' => 'form-control']) !!}
+        <small class="form-text text-muted">Warping double curly braces to make gaps and warped text will be counting as correct answer.</small>
+        {!! $errors->first('fill_gaps', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
 

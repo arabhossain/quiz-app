@@ -34,12 +34,19 @@
             </div>
         </template>
 
+        <template v-if="questionType === 4">
+            <div class="form-group">
+                <label for="answer">Place correct answer(s)</label>
+                <template v-html="fillGaps"></template>
+            </div>
+        </template>
+
     </div>
 </template>
 
 <script>
 export default {
-    props: ['options', 'questionId', 'questionType'],
+    props: ['options', 'questionId', 'questionType', 'fillGaps'],
     mounted() {
         console.log(this.options)
         console.log(this.questionId)
@@ -63,6 +70,12 @@ export default {
         multipleValue(newValue, oldValue) {
             if (newValue !== oldValue)
                 this.selectOption();
+        },
+        getFillInGaps(){
+            if (!this.fillGaps)
+                return;
+
+
         }
     },
     methods: {

@@ -3,7 +3,7 @@
 {!! Form::hidden('quiz_id', $question->quiz_id ) !!}
 <div class="form-group{{ $errors->has('option') ? 'has-error' : ''}}">
     {!! Form::label('option', 'Option', ['class' => 'control-label']) !!}
-    {!! Form::text('option', null, ('required' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}
+    {!! Form::text('option', null, ['class' => 'form-control']) !!}
     {!! $errors->first('option', '<p class="help-block">:message</p>') !!}
 </div>
 

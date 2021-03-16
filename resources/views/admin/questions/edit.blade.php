@@ -9,7 +9,7 @@
                 <div class="card">
                     <div class="card-header">Edit Question #{{ $item->id }}</div>
                     <div class="card-body">
-                        <a href="{{ url('/admin/quizzes') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                        <a href="{{ url('/admin/quizzes/'.$item->quiz_id.'/questions') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                         <br />
                         <br />
 
@@ -40,3 +40,21 @@
 @endsection
 
 @include('admin.image-uploader')
+
+@push('script')
+    <script>
+        const $fillGapsInputs = $('#fill-in-the-gaps')
+
+        @if($item->answer_type != 4)
+            $fillGapsInputs.hide()
+       @endif
+
+        $('input[name="answer_type"]').on('change', function (){
+            const type = parseInt($(this).val());
+            if (type === 4)
+                $fillGapsInputs.show()
+            else
+                $fillGapsInputs.hide()
+        })
+    </script>
+@endpush

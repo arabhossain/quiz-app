@@ -6,7 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Question extends Model
 {
-    protected $fillable = ['question','answer_type','description', 'point','image','quiz_id','visible',];
+    protected $fillable = ['question','answer_type', 'fill_gaps', 'description', 'point','image','quiz_id','visible',];
+
+    private $fillInGapInput = '<input ref="fillGaps" type="text"/>';
+
+    protected $appends = ['fill_gaps_render'];
 
     public function options(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
@@ -18,6 +22,11 @@ class Question extends Model
         return $this->belongsTo(Quiz::class, 'quiz_id');
     }
 
+    public function getFillGapsRenderAttribute(): string
+    {
+        return preg_replace('/\{{[^)]+\}}/U', $this->fillInGapInput, $this->attributes['fill_gaps']);
+    }
+
     public function getAnswerTypeTextAttribute(): string
     {
         switch ($this->attributes['answer_type']){
@@ -27,6 +36,8 @@ class Question extends Model
                 return 'Multiple Selection';
             case 3:
                 return 'Text Answer';
+            case 4:
+                return 'Fill In The Gaps';
         }
     }
 

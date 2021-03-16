@@ -70,13 +70,13 @@ class QuestionsController extends Controller
         return view('admin.questions.show', compact('item'));
     }
 
-    public function edit($id)
+    public function edit($quizId, $id)
     {
         $item = Question::findOrFail($id);
         return view('admin.questions.edit', compact('item'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $quizId, $id)
     {
         $item = Question::findOrFail($id);
         $item->update($request->except('image'));
@@ -107,7 +107,7 @@ class QuestionsController extends Controller
                 $tempFile->first()->delete();
             }
         }
-        return redirect('admin/quizzes/'.$item->quiz_id.'/questions/'.$item->id)->with('flash_message', 'Question has been updated!');
+        return redirect('admin/quizzes/'.$quizId.'/questions/'.$item->id)->with('flash_message', 'Question has been updated!');
     }
 
     public function destroy($quizId, $questionId)

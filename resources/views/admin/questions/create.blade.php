@@ -35,3 +35,18 @@
 @endsection
 
 @include('admin.image-uploader')
+
+@push('script')
+<script>
+    const $fillGapsInputs = $('#fill-in-the-gaps')
+    $fillGapsInputs.hide()
+
+   $('input[name="answer_type"]').on('change', function (){
+       const type = parseInt($(this).val());
+       if (type === 4)
+           $fillGapsInputs.show()
+       else
+           $fillGapsInputs.hide()
+   })
+</script>
+@endpush
