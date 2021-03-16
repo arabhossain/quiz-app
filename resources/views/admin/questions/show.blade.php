@@ -37,6 +37,9 @@
                                     </tr>
                                     <tr><th> Question </th><td> {{ $item->question }} </td></tr>
                                     <tr><th> Answer Type </th><td> {{ $item->answer_type_text }} </td></tr>
+                                    @if($item->answer_type == 4)
+                                    <tr><th>Fill Gaps</th><td> {!! $item->fill_gaps_code !!} </td></tr>
+                                    @endif
                                     <tr><th> Description </th><td> {!! $item->description !!} </td></tr>
                                     <tr><th> Point </th><td> {{ $item->point }} </td></tr>
                                     <tr><th> Image </th><td><img src="{{$item->image_url}}" height="150px"> </td></tr>

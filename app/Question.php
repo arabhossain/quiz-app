@@ -10,7 +10,7 @@ class Question extends Model
 
     private $fillInGapInput = '<input ref="fillGaps" type="text"/>';
 
-    protected $appends = ['fill_gaps_render'];
+    protected $appends = ['fill_gaps_htm', 'fill_gaps_code'];
 
     public function options(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
@@ -22,9 +22,22 @@ class Question extends Model
         return $this->belongsTo(Quiz::class, 'quiz_id');
     }
 
-    public function getFillGapsRenderAttribute(): string
+    public function getFillGapsHtmAttribute(): string
     {
         return preg_replace('/\{{[^)]+\}}/U', $this->fillInGapInput, $this->attributes['fill_gaps']);
+    }
+
+    public function getFillGapsCodeAttribute(): string
+    {
+        $str = '';
+        preg_match_all('/\{{[^)]+\}}/U', $this->attributes['fill_gaps'], $matches);
+        $gaps = $matches[0] ?? [];
+        foreach ($gaps as $gap){
+            $value = substr($gap, 2,strlen($gap)-4);
+            $gapCode = "<code>$value</code>";
+            $str = str_replace($gap, $gapCode, $this->attributes['fill_gaps']);
+        }
+        return $str;
     }
 
     public function getAnswerTypeTextAttribute(): string

@@ -2003,10 +2003,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['options', 'questionId', 'questionType', 'fillGaps'],
-  mounted: function mounted() {
-    console.log(this.options);
-    console.log(this.questionId);
-  },
   data: function data() {
     return {
       textAnswer: null,
@@ -6675,7 +6671,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* HIDE RADIO */\n.image-radio[type=radio][data-v-79a99dfa] {\n    position: absolute;\n    opacity: 0;\n    width: 0;\n    height: 0;\n}\n\n/* IMAGE STYLES */\n.image-radio[type=radio] + img[data-v-79a99dfa] {\n    cursor: pointer;\n}\n\n/* CHECKED STYLES */\n.image-radio[type=radio]:checked + img[data-v-79a99dfa] {\n    outline: 2px solid #f00;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* HIDE RADIO */\n.image-radio[type=radio][data-v-79a99dfa] {\n    position: absolute;\n    opacity: 0;\n    width: 0;\n    height: 0;\n}\n\n/* IMAGE STYLES */\n.image-radio[type=radio] + img[data-v-79a99dfa] {\n    cursor: pointer;\n}\n\n/* CHECKED STYLES */\n.image-radio[type=radio]:checked + img[data-v-79a99dfa] {\n    outline: 2px solid #f00;\n}\n", ""]);
 
 // exports
 
@@ -38531,7 +38527,7 @@ var render = function() {
     "div",
     { staticClass: "mt-3" },
     [
-      _vm.questionType !== 3
+      _vm.questionType !== 3 || _vm.questionType !== 4
         ? _c("p", [_vm._v("Please select the correct answer")])
         : _vm._e(),
       _vm._v(" "),
@@ -38747,18 +38743,13 @@ var render = function() {
       _vm._v(" "),
       _vm.questionType === 4
         ? [
-            _c(
-              "div",
-              { staticClass: "form-group" },
-              [
-                _c("label", { attrs: { for: "answer" } }, [
-                  _vm._v("Place correct answer(s)")
-                ]),
-                _vm._v(" "),
-                void 0
-              ],
-              2
-            )
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "answer" } }, [
+                _vm._v("Place correct answer(s)")
+              ]),
+              _vm._v(" "),
+              _c("div", { domProps: { innerHTML: _vm._s(_vm.fillGaps) } })
+            ])
           ]
         : _vm._e()
     ],
@@ -38832,7 +38823,7 @@ var render = function() {
                         answers: _vm.answers,
                         questionType: _vm.getQuestion.answer_type,
                         questionId: _vm.getQuestion.id,
-                        fillGaps: _vm.getQuestion.fill_gaps_render,
+                        fillGaps: _vm.getQuestion.fill_gaps_htm,
                         options: _vm.getQuestion.options
                       },
                       on: { selected: _vm.answered }

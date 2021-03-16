@@ -19,7 +19,7 @@ class QuizzesController extends Controller
             $quizzes= $quizzes->where('title', 'LIKE', "%$keyword%")->orWhere('quiz_hints', 'LIKE', "%$keyword%");
         }
 
-        if ($request->courses && is_array($request->courses) && count($request->courses) > 0) {
+        if ($request->courses && is_array($request->courses) && count($request->courses) > 0 && !in_array('all', $request->courses)) {
             $quizzes = $quizzes->whereHas('course', function ($q) use($request){
                 $q->whereIn('id', $request->courses);
             });
@@ -27,7 +27,7 @@ class QuizzesController extends Controller
 
         $quizzes = $quizzes->with(['course' => function($q){
             $q->select(['id', 'name']);
-        }])->withCount(['questions'])->visible()->paginate(30);
+        }])->withCount(['questions', 'attempts'])->visible()->paginate(30);
 
 
         return view('frontend.pages.quizzes', compact('courses', 'quizzes'));
@@ -52,7 +52,6 @@ class QuizzesController extends Controller
 
     public function attemptQuiz($quizId, $quizSlug)
     {
-
         $quiz = Quiz::with(['course' => function($q){
             $q->select(['id', 'name']);
         },'questions' => function($q){

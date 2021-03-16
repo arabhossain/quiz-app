@@ -23,12 +23,12 @@
 </section>
 <section class="search-sec">
     <div class="container">
-        <form action="#" method="post" novalidate="novalidate">
+        <form method="get" action="{{ route('quizzes') }}">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="row">
                         <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                            <select class="form-control search-slt" id="exampleFormControlSelect1">
+                            <select class="form-control search-slt" name="courses[]" id="exampleFormControlSelect1">
                                <option value="all"> All Courses</option>
                                @foreach($courses as $course)
                                     <option value="{{$course->id}}"> {{$course->name}}</option>
@@ -36,10 +36,10 @@
                             </select>
                         </div>
                         <div class="col-lg-6 col-md-3 col-sm-12 p-0">
-                            <input type="text" class="form-control search-slt" placeholder="Enter Quiz Title">
+                            <input type="text" class="form-control search-slt" name="search" placeholder="Enter Quiz Title">
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                            <button type="button" class="btn btn-danger wrn-btn">Search</button>
+                            <button type="submit" class="btn btn-danger wrn-btn">Search</button>
                         </div>
                     </div>
                 </div>

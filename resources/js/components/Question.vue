@@ -7,7 +7,7 @@
                    <h3 v-if="getQuestion.question">{{ getQuestion.question }}</h3>
                    <p v-if="getQuestion.description" v-html="getQuestion.description"></p>
                    <img style="max-height: 250px" v-if="getQuestion.image" :src="getImage(getQuestion.image)" alt="">
-                   <q-options @selected="answered" v-if="currentQuestion || getQuestion.answer_type === 3" :answers="answers" :questionType="getQuestion.answer_type" :questionId="getQuestion.id" :fillGaps="getQuestion.fill_gaps_render" :options="getQuestion.options"/>
+                   <q-options @selected="answered" v-if="currentQuestion || getQuestion.answer_type === 3" :answers="answers" :questionType="getQuestion.answer_type" :questionId="getQuestion.id" :fillGaps="getQuestion.fill_gaps_htm" :options="getQuestion.options"/>
                </div>
            </div>
            <div class="row">

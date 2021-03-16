@@ -63,7 +63,7 @@ class QuestionsController extends Controller
         return redirect('admin/quizzes/'.$request->quiz_id.'/questions')->with('flash_message', 'New Question Added To The Quiz!');
     }
 
-    public function show($id)
+    public function show($QuizId, $id)
     {
         $item = Question::where('id', $id)->with(['quiz'])->withCount(['options'])->get()->first();
 

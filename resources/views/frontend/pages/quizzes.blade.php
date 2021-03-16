@@ -60,9 +60,9 @@
                                                         {{$quiz->questions_count}}
                                                     </td>
                                                     <td class="rate text-right">
-                                                        {{ $quiz->min_score }}
+                                                        {{ $quiz->total_point }}
                                                     </td>
-                                                    <td class="price text-right">{{$quiz->total_point}}</td>
+                                                    <td class="price text-right">{{$quiz->attempts_count}}</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>

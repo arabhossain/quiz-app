@@ -1,6 +1,6 @@
 <template>
     <div class="mt-3">
-        <p  v-if="questionType !== 3">Please select the correct answer</p>
+        <p v-if="questionType !== 3 || questionType !== 4">Please select the correct answer</p>
         <template v-for="(option, index) in options">
             <template v-if="questionType === 1">
                 <label v-if="option.image" class="text-center">
@@ -37,7 +37,7 @@
         <template v-if="questionType === 4">
             <div class="form-group">
                 <label for="answer">Place correct answer(s)</label>
-                <template v-html="fillGaps"></template>
+                <div v-html="fillGaps"></div>
             </div>
         </template>
 
@@ -47,10 +47,6 @@
 <script>
 export default {
     props: ['options', 'questionId', 'questionType', 'fillGaps'],
-    mounted() {
-        console.log(this.options)
-        console.log(this.questionId)
-    },
     data() {
         return {
             textAnswer: null,
